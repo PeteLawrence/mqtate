@@ -1,12 +1,14 @@
-function API(logger, mqtt) {
-  this.logger = logger;
-  this.mqtt = mqtt;
-}
+'use strict';
 
-API.prototype.publish = function(topic, payload, options) {
-  options = options || {};
+const log4js = require('log4js');
 
-  this.logger.debug('publish()', topic, payload, options);
+class API {
+
+  constructor(logger, mqtt) {
+    this.logger = logger;
+    this.mqtt = mqtt;
+  }
+
 }
 
 module.exports = API;

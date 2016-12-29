@@ -1,18 +1,32 @@
 'use strict';
 
 const mqtt = require('mqtt');
+const EventEmitter = require('events');
 
-class MQTT {
+class MQTT extends EventEmitter {
 
-  constructor(logger, url) {
-    var client = mqtt.connect(url);
-    client
-      .on('connect', function () {
-        logger.info('Connected to MQTT broker');
-      })
-      .on('error', function(err) {
-        logger.error(err);
+  constructor(logger) {
+    super();
+    this.logger = logger;
+  }
+
+  connect(url) {
+    return new Promise(function(resolve, reject) {
+      this.client = mqtt.connect(url);
+      this.client.on('connect', () => {
+        resolve();
       });
+    }.bind(this));
+  }
+
+  publish(topic, payload, options) {
+    return new Promise(function(resolve, reject) {
+      options = options || {};
+
+      this.client.publish(topic, payload, options, function() {
+        resolve();
+      });
+    }.bind(this));
   }
 }
 
