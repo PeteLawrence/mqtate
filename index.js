@@ -2,6 +2,9 @@ const MQTT = require('./MQTT.js');
 const config = require('./config.json');
 const Logger = require('./Logger.js');
 
+const DashButton = require('./plugins/DashButton.js');
+const Weather = require('./plugins/Weather.js');
+
 //Create a logger
 var logger = new Logger('CORE');
 
@@ -18,14 +21,22 @@ mqtt.connect(config.broker.url).then(function() {
   var API = require('./API.js');
 
   config.plugins.forEach(function(pluginConfig) {
-    var pluginLogger = new Logger(pluginConfig.name);
+    var name = pluginConfig.name;
+    var config = pluginConfig.config;
+
+    var pluginLogger = new Logger(name);
     var api = new API(pluginLogger, mqtt);
 
-    //TODO: Instantiate the plugin
-
-    api.mqtt.publish('foo', 'bar').then(function() {
-      pluginLogger.debug('Published message');
-    });
+    //Instantiate the plugin
+    logger.info('Started ' + name);
+    switch(name) {
+      case 'DashButton':
+        new DashButton(api, config);
+        break;
+      case 'Weather':
+        new Weather(api, config);
+        break;
+    }
   });
 
 });

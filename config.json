@@ -5,7 +5,27 @@
 
     "plugins": [
         {
-            "name": "Test"
+            "name": "DashButton",
+            "config": {
+                "buttons": [
+                    {
+                        "address": "50:f5:da:24:d4:89",
+                        "name": "dashButton1"
+                    },
+                    {
+                        "address": "ac:63:be:ea:32:7f",
+                        "name": "dashButton2"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Weather",
+            "config": {
+                "longitude": 52.748445,
+                "latitude": 1.102884,
+                "refreshInterval": 600
+            }
         }
     ]
 }
