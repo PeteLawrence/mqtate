@@ -22,6 +22,7 @@ class MQTT extends EventEmitter {
   publish(topic, payload, options) {
     return new Promise(function(resolve, reject) {
       options = options || {};
+      console.log('payload', payload);
 
       this.client.publish(topic, payload, options, function() {
         resolve();

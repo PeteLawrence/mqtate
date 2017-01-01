@@ -4,6 +4,7 @@ const Logger = require('./Logger.js');
 
 const DashButton = require('./plugins/DashButton.js');
 const Weather = require('./plugins/Weather.js');
+const Netatmo = require('./plugins/Netatmo.js');
 
 //Create a logger
 var logger = new Logger('CORE');
@@ -35,6 +36,9 @@ mqtt.connect(config.broker.url).then(function() {
         break;
       case 'Weather':
         new Weather(api, config);
+        break;
+      case 'Netatmo':
+        new Netatmo(api, config);
         break;
     }
   });
