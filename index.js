@@ -5,6 +5,8 @@ const Logger = require('./Logger.js');
 const DashButton = require('./plugins/DashButton.js');
 const Weather = require('./plugins/Weather.js');
 const Netatmo = require('./plugins/Netatmo.js');
+const IPAddress = require('./plugins/IPAddress.js');
+const SpeedTestNet = require('./plugins/SpeedTestNet.js');
 
 //Create a logger
 var logger = new Logger('CORE');
@@ -15,7 +17,7 @@ logger.info('Started mqtt-controller');
 //Connect to the MQTT broker
 var mqtt = new MQTT(logger);
 
-mqtt.connect(config.broker.url).then(function() {
+mqtt.connect(config.broker.url, { username: config.broker.username, password: config.broker.password}).then(function() {
   logger.info('Connected to MQTT broker');
 
   //Create the API object that plugins will be passed
@@ -39,6 +41,12 @@ mqtt.connect(config.broker.url).then(function() {
         break;
       case 'Netatmo':
         new Netatmo(api, config);
+        break;
+      case 'IPAddress':
+        new IPAddress(api, config);
+        break;
+      case 'SpeedTestNet':
+        new SpeedTestNet(api, config);
         break;
     }
   });

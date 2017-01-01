@@ -10,9 +10,9 @@ class MQTT extends EventEmitter {
     this.logger = logger;
   }
 
-  connect(url) {
+  connect(url, options) {
     return new Promise(function(resolve, reject) {
-      this.client = mqtt.connect(url);
+      this.client = mqtt.connect(url, options);
       this.client.on('connect', () => {
         resolve();
       });
@@ -22,7 +22,7 @@ class MQTT extends EventEmitter {
   publish(topic, payload, options) {
     return new Promise(function(resolve, reject) {
       options = options || {};
-      console.log('payload', payload);
+      this.logger.debug('publish()', topic, payload);
 
       this.client.publish(topic, payload, options, function() {
         resolve();
