@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+
+const Server = require('../lib/Server.js');
+const config = require('../config.json');
+
+var s = new Server(config);
+s.start();

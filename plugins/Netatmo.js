@@ -2,8 +2,6 @@
 
 var netatmo = require('netatmo');
 
-console.log('a');
-
 class Netatmo {
 
   constructor(api, config) {

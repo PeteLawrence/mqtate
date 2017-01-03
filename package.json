@@ -6,5 +6,9 @@
     "node-dash-button": "^0.6.1",
     "request": "^2.79.0",
     "speedtest-net": "^1.2.11"
+  },
+  "scripts": {
+    "start": "bin/start"
   }
+
 }
