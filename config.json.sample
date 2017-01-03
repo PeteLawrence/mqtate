@@ -1,0 +1,16 @@
+{
+    "broker": {
+        "url": "mqtt://localhost",
+        "username": "USERNAME",
+        "password": "PASSWORD"
+    },
+
+    "plugins": [
+        {
+            "name": "IPAddress",
+            "config": {
+                "refreshInterval": 600
+            }
+        }
+    ]
+}
