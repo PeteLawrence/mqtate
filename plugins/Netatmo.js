@@ -8,6 +8,7 @@ class Netatmo {
 
   constructor(api, config) {
     this.api = api;
+    this.config = config;
 
     this.netatmoApi = new netatmo({
       "client_id": config.client_id,
@@ -16,10 +17,14 @@ class Netatmo {
       "password": config.password
     });
 
+
+  }
+
+  start() {
     this.update();
 
     //Schedule weather to be updated periodically
-    setInterval(this.update.bind(this), config.refreshInterval * 1000);
+    setInterval(this.update.bind(this), this.config.refreshInterval * 1000);
   }
 
 

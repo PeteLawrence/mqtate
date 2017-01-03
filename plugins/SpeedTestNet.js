@@ -7,11 +7,13 @@ class SpeedTestNet {
 
   constructor(api, config) {
     this.api = api;
+  }
 
+  start() {
     this.update();
 
     //Schedule weather to be updated periodically
-    setInterval(this.update.bind(this), config.refreshInterval * 1000);
+    setInterval(this.update.bind(this), this.config.refreshInterval * 1000);
   }
 
   update() {

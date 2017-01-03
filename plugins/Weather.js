@@ -6,16 +6,19 @@ class Weather {
 
   constructor(api, config) {
     this.api = api;
+    this.config = config;
+  }
 
+  start() {
     //Build an array of MAC addresses of Dash buttons to listen for
-    var longitude = config.longitude;
-    var latitude = config.latitude;
+    var longitude = this.config.longitude;
+    var latitude = this.config.latitude;
 
     //Update weather on startup
     this.update(longitude, latitude);
 
     //Schedule weather to be updated periodically
-    setInterval(this.update.bind(this), config.refreshInterval * 1000, longitude, latitude);
+    setInterval(this.update.bind(this), this.config.refreshInterval * 1000, longitude, latitude);
   }
 
   update(longitude, latitude) {

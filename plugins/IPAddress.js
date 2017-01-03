@@ -7,11 +7,14 @@ class IPAddress {
 
   constructor(api, config) {
     this.api = api;
+    this.config = config;
+  }
 
+  start() {
     this.update();
 
-    //Schedule weather to be updated periodically
-    setInterval(this.update.bind(this), config.refreshInterval * 1000);
+    //Schedule IP address to be updated periodically
+    setInterval(this.update.bind(this), this.config.refreshInterval * 1000);
   }
 
   update() {

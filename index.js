@@ -34,19 +34,19 @@ mqtt.connect(config.broker.url, { username: config.broker.username, password: co
     logger.info('Started ' + name);
     switch(name) {
       case 'DashButton':
-        new DashButton(api, config);
+        new DashButton(api, config).start();
         break;
       case 'Weather':
-        new Weather(api, config);
+        new Weather(api, config).start();
         break;
       case 'Netatmo':
-        new Netatmo(api, config);
+        new Netatmo(api, config).start();
         break;
       case 'IPAddress':
-        new IPAddress(api, config);
+        new IPAddress(api, config).start();
         break;
       case 'SpeedTestNet':
-        new SpeedTestNet(api, config);
+        new SpeedTestNet(api, config).start();
         break;
     }
   });
